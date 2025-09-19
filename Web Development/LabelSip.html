@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabelSip - Premium Customizable Mineral Water Bottles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Loading Screen Animation 
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1E90FF 0%, #87CEEB 100%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeOut 3s ease-in-out forwards;
+        }*/
+        .logo img{
+ height: 120px; /* adjust logo size */
+  cursor: pointer; /* makes it clickable */
+        }
+        
+        .ripple {
+            width: 100px;
+            height: 100px;
+            border: 3px solid rgb(0, 217, 255);
+            border-radius: 50%;
+            animation: ripple 2s infinite;
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+        
+        @keyframes fadeOut {
+            0%, 80% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        
+        /* Hero Background Animation */
+        .hero-bg {
+            background: linear-gradient(135deg, #1E90FF 0%, #87CEEB 50%, #E0F6FF 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Floating Animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .float-delayed {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: -2s;
+        }
+        
+        .float-delayed-2 {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: -4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(2deg); }
+            66% { transform: translateY(-10px) rotate(-1deg); }
+        }
+        
+        /* Fade In Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        .fade-in-delayed {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+        
+        .fade-in-delayed-2 {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Button Glow Effect */
+        .glow-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .glow-btn:hover {
+            box-shadow: 0 0 30px rgba(30, 144, 255, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .glow-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .glow-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Card Hover Effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(30, 144, 255, 0.2);
+        }
+        
+        /* Bottle SVG */
+        .bottle {
+            transition: all 0.3s ease;
+        }
+        
+        .bottle:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Pulse Animation */
+        .pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(30, 144, 255, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(30, 144, 255, 0.8); }
+        }
+        
+        /* Carousel */
+        .carousel-container {
+            overflow: hidden;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        /* Form Animations */
+        .floating-label {
+            position: relative;
+        }
+        
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label {
+            transform: translateY(-25px) scale(0.8);
+            color: #1E90FF;
+        }
+        
+        .floating-label label {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color: #9CA3AF;
+        }
+
+        /* Hero Enhancements */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 8s infinite linear;
+        }
+        
+        .particle-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle-2 { top: 60%; left: 80%; animation-delay: 2s; }
+        .particle-3 { top: 80%; left: 20%; animation-delay: 4s; }
+        .particle-4 { top: 30%; left: 70%; animation-delay: 6s; }
+        .particle-5 { top: 50%; left: 50%; animation-delay: 1s; }
+        
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        .hero-content {
+            animation: heroFadeIn 2s ease-out;
+        }
+
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .typewriter {
+            animation: typewriter 3s steps(12) 1s forwards, blink 1s infinite;
+            border-right: 3px solid #FDE047;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+        }
+
+        @keyframes typewriter {
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .premium-badge {
+            animation: badgeGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.6); }
+        }
+
+        .counter {
+            animation: countUp 2s ease-out 3s forwards;
+        }
+
+        /* Section Transition Animation */
+        .section-transition {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .section-transition.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger animation for child elements */
+        .stagger-animation > * {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .stagger-animation.animate > *:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-animation.animate > *:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-animation.animate > *:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-animation.animate > *:nth-child(4) { transition-delay: 0.4s; }
+
+        .stagger-animation.animate > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="ripple"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="logo">
+      <img src="logo1.png" alt="My Startup Logo" onclick="window.location.href='LabelSip.html'">
+    </div>
+                    <!-- <h1 class="text-2xl font-bold text-blue-500">LabelSip</h1> -->
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-gray-700 hover:text-blue-500 transition-colors">Home</a>
+                        <a href="#about" class="text-gray-700 hover:text-blue-500 transition-colors">About</a>
+                        <a href="#products" class="text-gray-700 hover:text-blue-500 transition-colors">Products</a>
+                        <a href="#branding" class="text-gray-700 hover:text-blue-500 transition-colors">Branding</a>
+                        <a href="#contact" class="text-gray-700 hover:text-blue-500 transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Floating Particles -->
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+            
+            <!-- Elegant Floating Bottles -->
+            <div class="float absolute top-16 left-8 opacity-30">
+                <svg class="bottle w-20 h-32" viewBox="0 0 100 150" fill="url(#heroBottleGradient)">
+                    <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                    <rect x="40" y="50" width="20" height="40" fill="rgba(255,255,255,0.3)" rx="2"/>
+                </svg>
+            </div>
+            <div class="float-delayed absolute top-24 right-12 opacity-25">
+                <svg class="bottle w-24 h-36" viewBox="0 0 100 150" fill="url(#heroBottleGradient)">
+                    <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                    <rect x="38" y="45" width="24" height="50" fill="rgba(255,255,255,0.3)" rx="2"/>
+                </svg>
+            </div>
+            <div class="float-delayed-2 absolute bottom-20 left-1/4 opacity-20">
+                <svg class="bottle w-16 h-24" viewBox="0 0 100 150" fill="url(#heroBottleGradient)">
+                    <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                    <rect x="42" y="55" width="16" height="35" fill="rgba(255,255,255,0.3)" rx="2"/>
+                </svg>
+            </div>
+            <div class="float absolute bottom-32 right-1/3 opacity-15">
+                <svg class="bottle w-18 h-28" viewBox="0 0 100 150" fill="url(#heroBottleGradient)">
+                    <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                    <rect x="41" y="52" width="18" height="38" fill="rgba(255,255,255,0.3)" rx="2"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="hero-content">
+                <!-- Premium Badge -->
+                
+
+                <!-- Main Heading with Typewriter Effect -->
+                <h1 class="hero-title text-6xl md:text-8xl font-bold text-white mb-8 leading-tight">
+                    <span class="block">Transform Your</span>
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-300 typewriter">Brand Story</span>
+                    <span class="block text-4xl md:text-5xl mt-4 font-light opacity-90">into Every Sip</span>
+                </h1>
+
+                <!-- Elegant Description -->
+                <p class="hero-description text-xl md:text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed">
+                    Grow your business with <span class="font-semibold text-yellow-200">premium customizable mineral water bottles</span> 
+                    that speak your brand language at every event, restaurant, and retail space.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="hero-buttons flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <button onclick="scrollToSection('contact')" class="cta-primary group relative overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-10 py-5 rounded-full text-lg font-bold shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 transform hover:scale-105">
+                        <span class="relative z-10 flex items-center">
+                            Start Your Order
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </button>
+                    
+                    <button onclick="scrollToSection('about')" class="cta-secondary group bg-white/10 backdrop-blur-md text-white px-10 py-5 rounded-full text-lg font-semibold border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                        <span class="flex items-center">
+                            Explore Solutions
+                            <svg class="w-5 h-5 ml-2 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="hero-stats mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+                    <div class="stat-item text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-yellow-300 mb-2 counter" data-target="1000">0</div>
+                        <div class="text-white/80 font-medium">Happy Clients</div>
+                    </div>
+                    <div class="stat-item text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-yellow-300 mb-2 counter" data-target="50000">0</div>
+                        <div class="text-white/80 font-medium">Bottles Delivered</div>
+                    </div>
+                    <div class="stat-item text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-yellow-300 mb-2 counter" data-target="24">0</div>
+                        <div class="text-white/80 font-medium">Hour Service</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+            </div>
+        </div>
+
+        <!-- SVG Gradients -->
+        <svg width="0" height="0" class="absolute">
+            <defs>
+                <linearGradient id="heroBottleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgba(255,255,255,0.8);stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(255,255,255,0.4);stop-opacity:1" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50 section-transition">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 stagger-animation">
+                <h2 class="text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">About LabelSip</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    We specialize in luxury water branding for events, shops, and restaurants. 
+                    Our premium mineral water bottles become powerful marketing tools with your custom branding.
+                </p>
+                <div class="mt-8 bg-gradient-to-r from-blue-50 to-blue-100 rounded-3xl p-8 max-w-4xl mx-auto border border-blue-200 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-4 shadow-lg animate-pulse">
+                            <span class="text-white text-3xl">🏢</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-blue-900">Bulk Orders Available</h3>
+                    </div>
+                    <p class="text-xl text-blue-800 text-center leading-relaxed mb-6">
+                        We provide <strong class="text-blue-900">bulk customizable orders</strong> for Hotels, Restaurants, and Shops with your logo. 
+                        Perfect for businesses looking to enhance their brand presence with premium mineral water bottles.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-6 text-blue-700">
+                        <span class="flex items-center bg-white/50 px-4 py-2 rounded-full shadow-md">
+                            <span class="mr-2 text-green-500 font-bold">✓</span>Minimum 500 bottles
+                        </span>
+                        <span class="flex items-center bg-white/50 px-4 py-2 rounded-full shadow-md">
+                            <span class="mr-2 text-green-500 font-bold">✓</span>Volume discounts
+                        </span>
+                        <span class="flex items-center bg-white/50 px-4 py-2 rounded-full shadow-md">
+                            <span class="mr-2 text-green-500 font-bold">✓</span>Custom packaging
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 stagger-animation">
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-2xl transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6">
+                        <span class="text-3xl">💧</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Premium Quality</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">Pure mineral water in elegant bottles crafted for excellence</p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-2xl transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6">
+                        <span class="text-3xl">🎨</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Custom Branding</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">Your logo printed with precision and artistic flair</p>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-2xl transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-6">
+                        <span class="text-3xl">🚚</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Fast Delivery</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">Lightning-fast distribution to crowded areas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Products</h2>
+                <p class="text-xl text-gray-600">Choose from our range of premium bottle sizes</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 250ml Bottle -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-8 text-center border border-gray-100">
+                    <div class="mb-6">
+                        <svg class="bottle w-20 h-32 mx-auto" viewBox="0 0 100 150" fill="#1E90FF">
+                            <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                            <rect x="40" y="60" width="20" height="30" fill="white" opacity="0.3" rx="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">250ml</h3>
+                    <p class="text-gray-600 mb-4">Perfect for events and sampling</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Compact size</li>
+                        <li>• Premium mineral water</li>
+                        <li>• Custom label printing</li>
+                    </ul>
+                </div>
+                
+                <!-- 500ml Bottle -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-8 text-center border border-gray-100">
+                    <div class="mb-6">
+                        <svg class="bottle w-24 h-36 mx-auto" viewBox="0 0 100 150" fill="#1E90FF">
+                            <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                            <rect x="38" y="50" width="24" height="40" fill="white" opacity="0.3" rx="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">500ml</h3>
+                    <p class="text-gray-600 mb-4">Most popular choice</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Standard size</li>
+                        <li>• Premium mineral water</li>
+                        <li>• Large branding area</li>
+                    </ul>
+                </div>
+                
+                <!-- 1L Bottle -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-8 text-center border border-gray-100">
+                    <div class="mb-6">
+                        <svg class="bottle w-28 h-40 mx-auto" viewBox="0 0 100 150" fill="#1E90FF">
+                            <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                            <rect x="36" y="40" width="28" height="50" fill="white" opacity="0.3" rx="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">1L</h3>
+                    <p class="text-gray-600 mb-4">Premium family size</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        <li>• Large capacity</li>
+                        <li>• Premium mineral water</li>
+                        <li>• Maximum brand visibility</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Branding -->
+    <section id="branding" class="py-20 bg-gradient-to-br from-blue-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Custom Branding</h2>
+                <p class="text-xl text-gray-600">Transform your bottles into powerful marketing tools</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Branding Flexibility</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm">✓</span>
+                            </div>
+                            <span>Full-color logo printing</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm">✓</span>
+                            </div>
+                            <span>Custom label designs</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm">✓</span>
+                            </div>
+                            <span>Event-specific messaging</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm">✓</span>
+                            </div>
+                            <span>Premium finish options</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="fade-in-delayed">
+                    <div class="relative">
+                        <div class="flex justify-center">
+                            <div class="text-center">
+                                <svg class="bottle w-48 h-72 mx-auto mb-4" viewBox="0 0 100 150" fill="#1E90FF">
+                                    <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                                    <!-- Vertical Label -->
+                                    <rect x="38" y="35" width="24" height="85" fill="white" stroke="#E5E7EB" stroke-width="1" rx="3"/>
+                                    <!-- Decorative border -->
+                                    <rect x="40" y="37" width="20" height="81" fill="none" stroke="#1E90FF" stroke-width="0.8" rx="2" opacity="0.4"/>
+                                    <!-- Creative Text Layout -->
+                                    <text x="50" y="48" text-anchor="middle" fill="#1E90FF" font-size="6" font-weight="bold">ADD</text>
+                                    <text x="50" y="58" text-anchor="middle" fill="#374151" font-size="5" font-weight="normal">YOUR</text>
+                                    <!-- Logo Icon -->
+                                    <circle cx="50" cy="75" r="8" fill="#F3F4F6" stroke="#1E90FF" stroke-width="1"/>
+                                    <path d="M44 72 L50 66 L56 72 L50 78 Z" fill="#1E90FF"/>
+                                    <circle cx="50" cy="72" r="2" fill="white"/>
+                                    <text x="50" y="84" text-anchor="middle" fill="#1E90FF" font-size="3" font-weight="bold">BRAND</text>
+                                    <!-- More Text -->
+                                    <text x="50" y="96" text-anchor="middle" fill="#374151" font-size="5" font-weight="normal">LOGO</text>
+                                    <text x="50" y="106" text-anchor="middle" fill="#9CA3AF" font-size="4" font-weight="light">HERE</text>
+                                    <!-- Decorative elements -->
+                                    <line x1="42" y1="110" x2="58" y2="110" stroke="#E5E7EB" stroke-width="0.8"/>
+                                    <circle cx="45" cy="114" r="1" fill="#1E90FF" opacity="0.6"/>
+                                    <circle cx="50" cy="116" r="1" fill="#1E90FF" opacity="0.8"/>
+                                    <circle cx="55" cy="114" r="1" fill="#1E90FF" opacity="0.6"/>
+                                </svg>
+                                <p class="text-lg font-semibold text-gray-900">Custom Label Design</p>
+                                <p class="text-sm text-gray-600 mt-2">Perfect space for your brand identity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distribution Services -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Distribution Services</h2>
+                <p class="text-xl text-gray-600">Fast and efficient delivery to crowded areas</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 text-white relative overflow-hidden">
+                        <h3 class="text-2xl font-bold mb-4">Delivery Coverage</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <span class="mr-3">🏢</span>
+                                <span>Business districts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="mr-3">🎪</span>
+                                <span>Event venues</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="mr-3">🏪</span>
+                                <span>Retail locations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="mr-3">🍽️</span>
+                                <span>Restaurants & cafes</span>
+                            </li>
+                        </ul>
+                        
+                        <!-- Animated delivery icons -->
+                        <div class="absolute -top-4 -right-4 opacity-20">
+                            <div class="float text-6xl">🚚</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in-delayed">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Why Choose Our Distribution?</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-blue-500">⚡</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Fast Delivery</h4>
+                                <p class="text-gray-600">Same-day delivery available for urgent orders</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-blue-500">📍</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Strategic Locations</h4>
+                                <p class="text-gray-600">Focused on high-traffic, crowded areas</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-blue-500">🤝</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Reliable Service</h4>
+                                <p class="text-gray-600">Professional handling and on-time delivery</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Client Testimonials</h2>
+                <p class="text-xl text-gray-600">What our clients say about LabelSip</p>
+            </div>
+            
+            <div class="carousel-container relative">
+                <div class="carousel-track" id="testimonialTrack">
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center max-w-2xl mx-auto">
+                            <div class="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-2xl">🏢</span>
+                            </div>
+                            <p class="text-lg text-gray-600 mb-6 italic">
+                                "LabelSip transformed our corporate events. The branded bottles were a huge hit with our clients and really elevated our brand presence."
+                            </p>
+                            <h4 class="font-bold text-gray-900">Sarah Johnson</h4>
+                            <p class="text-gray-500">Event Manager, TechCorp</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center max-w-2xl mx-auto">
+                            <div class="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-2xl">🍽️</span>
+                            </div>
+                            <p class="text-lg text-gray-600 mb-6 italic">
+                                "Our restaurant customers love the premium feel of the branded water bottles. It's become part of our signature dining experience."
+                            </p>
+                            <h4 class="font-bold text-gray-900">Marco Rodriguez</h4>
+                            <p class="text-gray-500">Owner, Bella Vista Restaurant</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="bg-white rounded-2xl shadow-lg p-8 text-center max-w-2xl mx-auto">
+                            <div class="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-2xl">🏪</span>
+                            </div>
+                            <p class="text-lg text-gray-600 mb-6 italic">
+                                "The quality and customization options are outstanding. LabelSip helped us create a unique product for our retail chain."
+                            </p>
+                            <h4 class="font-bold text-gray-900">Lisa Chen</h4>
+                            <p class="text-gray-500">Marketing Director, Fresh Market</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation arrows -->
+                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:bg-gray-50 transition-colors" onclick="previousTestimonial()">
+                    <span class="text-blue-500">←</span>
+                </button>
+                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:bg-gray-50 transition-colors" onclick="nextTestimonial()">
+                    <span class="text-blue-500">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elegant Contact / Order Now Section -->
+    <section id="contact" class="relative py-32 overflow-hidden">
+        <!-- Sophisticated Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.3),transparent_50%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.2),transparent_50%)]"></div>
+        
+        <!-- Floating Geometric Elements -->
+        <div class="absolute top-20 left-10 w-32 h-32 border border-white/10 rounded-full animate-pulse opacity-30"></div>
+        <div class="absolute top-40 right-20 w-24 h-24 border border-blue-300/20 rounded-lg rotate-45 animate-bounce opacity-40" style="animation-duration: 3s;"></div>
+        <div class="absolute bottom-32 left-1/4 w-16 h-16 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-20 right-1/3 w-20 h-20 border-2 border-white/10 rounded-full animate-spin" style="animation-duration: 20s;"></div>
+        
+        <!-- Elegant Particles -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/6 w-1 h-1 bg-white/60 rounded-full animate-ping" style="animation-delay: 0s;"></div>
+            <div class="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-blue-300/50 rounded-full animate-ping" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-1/3 left-1/3 w-1 h-1 bg-purple-300/40 rounded-full animate-ping" style="animation-delay: 4s;"></div>
+            <div class="absolute bottom-1/4 right-1/6 w-1.5 h-1.5 bg-white/40 rounded-full animate-ping" style="animation-delay: 6s;"></div>
+        </div>
+
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Elegant Header -->
+            <div class="text-center mb-20 fade-in">
+                <div class="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-8">
+                    <span class="text-blue-300 mr-2">✨</span>
+                    <span class="text-white/90 font-medium tracking-wide " id="logo">Exclusive Premium Experience</span>
+                    <span class="text-blue-300 ml-2">✨</span>
+                </div>
+                
+                <h2 class="text-6xl md:text-7xl font-bold mb-8 leading-tight">
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-white">Elevate Your</span>
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-purple-300 to-blue-300 mt-2">Brand Story</span>
+                </h2>
+                
+                <p class="text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
+                    Transform every drop into a <span class="font-semibold text-blue-200">premium brand experience</span> 
+                    that resonates with elegance and sophistication
+                </p>
+            </div>
+            
+            <!-- Luxurious Order Card -->
+            <div class="text-center fade-in-delayed">
+                <a href="https://wa.me/1234567890?text=Hi%20LabelSip!%20I'm%20interested%20in%20ordering%20custom%20branded%20mineral%20water%20bottles.%20Please%20send%20me%20more%20details." target="_blank" class="inline-block group">
+                    <div class="relative transform hover:scale-105 transition-all duration-700 hover:rotate-1">
+                        <!-- Main Luxury Card -->
+                        <div class="bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-2xl rounded-[2.5rem] p-12 border border-white/20 shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 max-w-5xl mx-auto relative overflow-hidden">
+                            
+                            <!-- Elegant Inner Glow -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 rounded-[2.5rem]"></div>
+                            
+                            <!-- Premium Content Layout -->
+                            <div class="relative z-10">
+                                <!-- Top Luxury Brand Strip -->
+                                <div class="flex items-center justify-center mb-10">
+                                    <div class="flex items-center space-x-6">
+                                        <!-- Elegant Bottle Showcase -->
+                                        <div class="relative">
+                                            <svg class="w-20 h-32 bottle transform hover:rotate-12 transition-transform duration-500" viewBox="0 0 100 150" fill="url(#luxuryBottleGradient)">
+                                                <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                                                <rect x="38" y="45" width="24" height="50" fill="rgba(255,255,255,0.2)" rx="3"/>
+                                                <rect x="40" y="55" width="20" height="60" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" rx="2"/>
+                                                <circle cx="50" cy="75" r="6" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                                                <text x="50" y="79" text-anchor="middle" fill="white" font-size="4" font-weight="bold">LS</text>
+                                                <text x="50" y="90" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="3">LUXURY</text>
+                                                <text x="50" y="100" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="2.5">EDITION</text>
+                                            </svg>
+                                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center animate-pulse">
+                                                <span class="text-xs">👑</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Luxury Divider -->
+                                        <div class="h-24 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
+                                        
+                                        <!-- Premium Brand Identity -->
+                                        <div class="text-center">
+                                            <div class="w-16 h-16 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-2xl border border-white/20 flex items-center justify-center mb-3 shadow-xl">
+                                                <span class="text-white text-2xl font-bold tracking-wider">LS</span>
+                                            </div>
+                                            <div class="text-white/90 font-bold text-lg tracking-wide">LabelSip</div>
+                                            <div class="text-blue-200/80 text-sm font-medium">Premium Collection</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sophisticated Call-to-Action -->
+                                <div class="text-center mb-10">
+                                    <h3 class="text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+                                        <span class="inline-block transform hover:scale-110 transition-transform duration-300">ORDER</span>
+                                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300 ml-4 inline-block transform hover:scale-110 transition-transform duration-300" style="transition-delay: 0.1s;">NOW</span>
+                                    </h3>
+                                    
+                                    <p class="text-2xl text-white/90 font-light mb-2">Exclusive WhatsApp Concierge Service</p>
+                                    <p class="text-white/70 text-lg">Bespoke branding • Express delivery • Luxury packaging</p>
+                                </div>
+                                
+                                <!-- Premium WhatsApp Button -->
+                                <div class="flex justify-center mb-10">
+                                    <div class="relative group">
+                                        <div class="absolute -inset-1 bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                                        <div class="relative bg-gradient-to-r from-green-500 to-green-600 text-white px-12 py-6 rounded-3xl font-bold text-xl shadow-2xl hover:shadow-green-500/30 transition-all duration-300 transform hover:scale-105 flex items-center">
+                                            <svg class="w-8 h-8 mr-4" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.516"/>
+                                            </svg>
+                                            <span>Begin Luxury Experience</span>
+                                            <div class="ml-4 w-2 h-2 bg-white/60 rounded-full animate-ping"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Elegant Stats Grid -->
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                                    <div class="text-center group">
+                                        <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-500 hover:bg-white/10">
+                                            <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300 mb-2">24h</div>
+                                            <div class="text-white/80 font-medium">Concierge Service</div>
+                                            <div class="text-white/50 text-sm mt-1">Premium support</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center group">
+                                        <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-500 hover:bg-white/10">
+                                            <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-blue-300 mb-2">1000+</div>
+                                            <div class="text-white/80 font-medium">Elite Clients</div>
+                                            <div class="text-white/50 text-sm mt-1">Trusted worldwide</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center group">
+                                        <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-500 hover:bg-white/10">
+                                            <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 mb-2">500+</div>
+                                            <div class="text-white/80 font-medium">Minimum Order</div>
+                                            <div class="text-white/50 text-sm mt-1">Bulk excellence</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Luxury Features Banner -->
+                                <div class="bg-gradient-to-r from-white/5 via-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
+                                    <div class="flex flex-wrap justify-center items-center gap-6 text-white/90">
+                                        <div class="flex items-center">
+                                            <span class="text-yellow-400 mr-2">👑</span>
+                                            <span class="font-medium">Premium Quality</span>
+                                        </div>
+                                        <div class="hidden md:block w-px h-6 bg-white/20"></div>
+                                        <div class="flex items-center">
+                                            <span class="text-blue-400 mr-2">🎨</span>
+                                            <span class="font-medium">Bespoke Design</span>
+                                        </div>
+                                        <div class="hidden md:block w-px h-6 bg-white/20"></div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-400 mr-2">⚡</span>
+                                            <span class="font-medium">Express Delivery</span>
+                                        </div>
+                                        <div class="hidden md:block w-px h-6 bg-white/20"></div>
+                                        <div class="flex items-center">
+                                            <span class="text-purple-400 mr-2">📦</span>
+                                            <span class="font-medium">Luxury Packaging</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sophisticated Floating Elements -->
+                            <div class="absolute top-6 right-6 w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-pulse opacity-60"></div>
+                            <div class="absolute top-12 left-8 w-2 h-2 bg-gradient-to-r from-white to-blue-200 rounded-full animate-pulse opacity-40" style="animation-delay: 1s;"></div>
+                            <div class="absolute bottom-8 right-12 w-2.5 h-2.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse opacity-50" style="animation-delay: 2s;"></div>
+                            <div class="absolute bottom-6 left-6 w-1.5 h-1.5 bg-white/60 rounded-full animate-pulse opacity-70" style="animation-delay: 0.5s;"></div>
+                        </div>
+
+                        <!-- Luxury Outer Glow -->
+                        <div class="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-3xl bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10 -z-10"></div>
+                    </div>
+                </a>
+                
+                <!-- Elegant Footer Text -->
+                <div class="mt-12 space-y-4">
+                    <p class="text-white/90 text-xl font-light">
+                        <span class="font-semibold text-blue-200">Exclusive branding experience</span> • 
+                        <span class="font-semibold text-purple-200">Instant luxury consultation</span>
+                    </p>
+                    <p class="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto">
+                        ✨ Same premium bottles showcased above • Artisan logo crafting • 
+                        <span class="text-blue-300">VIP WhatsApp concierge service</span> • Luxury packaging included
+                    </p>
+                </div>
+            </div>
+
+            <!-- SVG Gradients for Luxury Elements -->
+            <svg width="0" height="0" class="absolute">
+                <defs>
+                    <linearGradient id="luxuryBottleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(255,255,255,0.95);stop-opacity:1" />
+                        <stop offset="30%" style="stop-color:rgba(147,197,253,0.8);stop-opacity:1" />
+                        <stop offset="70%" style="stop-color:rgba(196,181,253,0.7);stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Creative Footer -->
+    <footer class="relative bg-gradient-to-br from-slate-900 via-gray-900 to-blue-900 text-white py-20 overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Floating Water Drops -->
+            <div class="absolute top-10 left-10 w-4 h-4 bg-blue-400/30 rounded-full animate-bounce" style="animation-delay: 0s; animation-duration: 3s;"></div>
+            <div class="absolute top-20 right-20 w-3 h-3 bg-blue-300/40 rounded-full animate-bounce" style="animation-delay: 1s; animation-duration: 4s;"></div>
+            <div class="absolute bottom-32 left-1/4 w-5 h-5 bg-blue-500/25 rounded-full animate-bounce" style="animation-delay: 2s; animation-duration: 3.5s;"></div>
+            <div class="absolute bottom-20 right-1/3 w-2 h-2 bg-blue-200/50 rounded-full animate-bounce" style="animation-delay: 0.5s; animation-duration: 2.8s;"></div>
+            
+            <!-- Elegant Wave Pattern -->
+            <div class="absolute bottom-0 left-0 w-full h-32 opacity-10">
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-full">
+                    <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="url(#waveGradient)" class="animate-pulse"/>
+                </svg>
+            </div>
+            
+            <!-- Floating Bottle Silhouettes -->
+            <div class="absolute top-16 right-16 opacity-5 transform rotate-12">
+                <svg class="w-16 h-24 animate-pulse" viewBox="0 0 100 150" fill="currentColor">
+                    <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                </svg>
+            </div>
+            <div class="absolute bottom-40 left-20 opacity-5 transform -rotate-12">
+                <svg class="w-12 h-18 animate-pulse" viewBox="0 0 100 150" fill="currentColor" style="animation-delay: 2s;">
+                    <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Creative Header Section -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center justify-center mb-6">
+                    <!-- Animated Logo with Bottles -->
+                    <div class="relative">
+                        <div class="flex items-center space-x-4">
+                            <!-- Left Bottle -->
+                            <svg class="w-8 h-12 text-blue-400 transform hover:scale-110 transition-transform duration-300" viewBox="0 0 100 150" fill="currentColor">
+                                <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                                <rect x="40" y="50" width="20" height="40" fill="rgba(255,255,255,0.3)" rx="2"/>
+                            </svg>
+                            
+                            <!-- Brand Name -->
+                            <h3 class="text-4xl font-bold bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 bg-clip-text text-transparent">
+                                LabelSip
+                            </h3>
+                            
+                            <!-- Right Bottle -->
+                            <svg class="w-8 h-12 text-blue-400 transform hover:scale-110 transition-transform duration-300" viewBox="0 0 100 150" fill="currentColor">
+                                <path d="M35 20 L35 10 Q35 5 40 5 L60 5 Q65 5 65 10 L65 20 Q70 25 70 35 L70 130 Q70 140 60 140 L40 140 Q30 140 30 130 L30 35 Q30 25 35 20 Z"/>
+                                <rect x="40" y="50" width="20" height="40" fill="rgba(255,255,255,0.3)" rx="2"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Animated Sparkles -->
+                        <div class="absolute -top-2 -right-2 text-yellow-400 animate-ping">✨</div>
+                        <div class="absolute -bottom-1 -left-2 text-blue-300 animate-ping" style="animation-delay: 1s;">💧</div>
+                    </div>
+                </div>
+                
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    <span class="font-semibold text-blue-300">Premium customizable mineral water bottles</span> 
+                    that transform your brand into an unforgettable experience
+                </p>
+                
+                <!-- Decorative Divider -->
+                <div class="flex items-center justify-center mt-8 mb-12">
+                    <div class="h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent w-32"></div>
+                    <div class="mx-4 w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div class="h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent w-32"></div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Content Grid -->
+            <div class="grid md:grid-cols-4 gap-8 mb-16">
+                <!-- Products Section -->
+                <div class="group">
+                    <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-blue-400/30 transition-all duration-300 hover:bg-white/10 transform hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-lg">🍶</span>
+                            </div>
+                            <h4 class="font-bold text-xl text-white">Products</h4>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-300 hover:text-blue-300 transition-colors cursor-pointer group">
+                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:animate-pulse"></span>
+                                250ml Bottles
+                            </li>
+                            <li class="flex items-center text-gray-300 hover:text-blue-300 transition-colors cursor-pointer group">
+                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:animate-pulse"></span>
+                                500ml Bottles
+                            </li>
+                            <li class="flex items-center text-gray-300 hover:text-blue-300 transition-colors cursor-pointer group">
+                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:animate-pulse"></span>
+                                1L Bottles
+                            </li>
+                            <li class="flex items-center text-gray-300 hover:text-blue-300 transition-colors cursor-pointer group">
+                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:animate-pulse"></span>
+                                Custom Branding
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Services Section -->
+                <div class="group">
+                    <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-400/30 transition-all duration-300 hover:bg-white/10 transform hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-lg">⚡</span>
+                            </div>
+                            <h4 class="font-bold text-xl text-white">Services</h4>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-300 hover:text-purple-300 transition-colors cursor-pointer group">
+                                <span class="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:animate-pulse"></span>
+                                Logo Printing
+                            </li>
+                            <li class="flex items-center text-gray-300 hover:text-purple-300 transition-colors cursor-pointer group">
+                                <span class="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:animate-pulse"></span>
+                                Label Design
+                            </li>
+                            <li class="flex items-center text-gray-300 hover:text-purple-300 transition-colors cursor-pointer group">
+                                <span class="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:animate-pulse"></span>
+                                Fast Delivery
+                            </li>
+                            <li class="flex items-center text-gray-300 hover:text-purple-300 transition-colors cursor-pointer group">
+                                <span class="w-2 h-2 bg-purple-400 rounded-full mr-3 group-hover:animate-pulse"></span>
+                                Bulk Orders
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Section -->
+                <div class="group">
+                    <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-green-400/30 transition-all duration-300 hover:bg-white/10 transform hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-lg">📞</span>
+                            </div>
+                            <h4 class="font-bold text-xl text-white">Contact</h4>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center text-gray-300 hover:text-green-300 transition-colors cursor-pointer group">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:bg-green-500/30 transition-colors">
+                                    <span class="text-green-400 text-sm group-hover:animate-bounce">📧</span>
+                                </div>
+                                <span class="text-sm font-medium">info@labelsip.com</span>
+                            </li>
+                            <li class="flex items-center text-gray-300 hover:text-green-300 transition-colors cursor-pointer group">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:bg-green-500/30 transition-colors">
+                                    <span class="text-green-400 text-sm group-hover:animate-bounce">📞</span>
+                                </div>
+                                <span class="text-sm font-medium">+1 (555) 123-4567</span>
+                            </li>
+                            <li class="flex items-center text-gray-300 hover:text-green-300 transition-colors cursor-pointer group">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:bg-green-500/30 transition-colors">
+                                    <span class="text-green-400 text-sm group-hover:animate-bounce">📍</span>
+                                </div>
+                                <span class="text-sm font-medium">123 Business Ave</span>
+                            </li>
+                            <li class="flex items-center text-gray-300 hover:text-green-300 transition-colors cursor-pointer group">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:bg-green-500/30 transition-colors">
+                                    <span class="text-green-400 text-sm group-hover:animate-bounce">🌐</span>
+                                </div>
+                                <span class="text-sm font-medium">www.labelsip.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Social & Newsletter Section -->
+                <div class="group">
+                    <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-yellow-400/30 transition-all duration-300 hover:bg-white/10 transform hover:scale-105">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-lg">🌟</span>
+                            </div>
+                            <h4 class="font-bold text-xl text-white">Connect</h4>
+                        </div>
+                        
+                        <!-- Social Links -->
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <div class="flex items-center justify-center w-full h-10 bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors cursor-pointer transform hover:scale-105 group">
+                                <svg class="w-4 h-4 text-white mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                                <span class="text-white text-xs font-medium">Facebook</span>
+                            </div>
+                            <div class="flex items-center justify-center w-full h-10 bg-blue-400 rounded-lg hover:bg-blue-300 transition-colors cursor-pointer transform hover:scale-105 group">
+                                <svg class="w-4 h-4 text-white mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                </svg>
+                                <span class="text-white text-xs font-medium">Twitter</span>
+                            </div>
+                            <div class="flex items-center justify-center w-full h-10 bg-pink-600 rounded-lg hover:bg-pink-500 transition-colors cursor-pointer transform hover:scale-105 group">
+                                <svg class="w-4 h-4 text-white mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.112.221.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                                </svg>
+                                <span class="text-white text-xs font-medium">Instagram</span>
+                            </div>
+                            <div class="flex items-center justify-center w-full h-10 bg-blue-700 rounded-lg hover:bg-blue-600 transition-colors cursor-pointer transform hover:scale-105 group">
+                                <svg class="w-4 h-4 text-white mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                <span class="text-white text-xs font-medium">LinkedIn</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Newsletter Signup -->
+                        <div class="mt-4">
+                            <p class="text-gray-400 text-sm mb-3">Stay updated with our latest offers</p>
+                            <div class="flex w-full">
+                                <input type="email" placeholder="Your email" class="flex-1 min-w-0 bg-white/10 border border-white/20 rounded-l-lg px-2 py-2 text-xs text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400">
+                                <button class="bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-2 rounded-r-lg text-white text-xs font-medium hover:from-yellow-400 hover:to-orange-400 transition-all flex-shrink-0">
+                                    ✓
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Creative Bottom Section -->
+            <div class="border-t border-white/10 pt-8">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <!-- Copyright with Animation -->
+                    <div class="text-center md:text-left mb-4 md:mb-0">
+                        <p class="text-gray-400 flex items-center">
+                            <span class="animate-pulse mr-2">©</span>
+                            <span>2024 LabelSip. All rights reserved.</span>
+                            <span class="ml-2 text-blue-400 animate-bounce">💧</span>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1">Premium mineral water branding solutions worldwide</p>
+                    </div>
+                    
+                    <!-- Floating Action Button -->
+                    <div class="flex items-center space-x-4">
+                        <div class="text-gray-400 text-sm hidden md:block">
+                            Ready to elevate your brand?
+                        </div>
+                        <button onclick="scrollToSection('contact')" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-medium hover:from-blue-400 hover:to-purple-500 transition-all transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 flex items-center">
+                            <span class="mr-2">Start Now</span>
+                            <span class="animate-bounce">🚀</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SVG Gradients -->
+        <svg width="0" height="0" class="absolute">
+            <defs>
+                <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:rgba(59,130,246,0.3);stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:rgba(147,51,234,0.2);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(59,130,246,0.3);stop-opacity:1" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </footer>
+
+    <script>
+        // Testimonial Carousel
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('#testimonialTrack > div');
+        const totalTestimonials = testimonials.length;
+
+        function showTestimonial(index) {
+            const track = document.getElementById('testimonialTrack');
+            track.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            showTestimonial(currentTestimonial);
+        }
+
+        function previousTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+            showTestimonial(currentTestimonial);
+        }
+
+        // Auto-slide testimonials
+        setInterval(nextTestimonial, 5000);
+
+        // Form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const button = event.target.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            
+            // Animate button
+            button.textContent = 'Sending...';
+            button.disabled = true;
+            button.classList.add('opacity-75');
+            
+            // Simulate form submission
+            setTimeout(() => {
+                button.textContent = 'Request Sent! ✓';
+                button.classList.remove('opacity-75');
+                button.classList.add('bg-green-500');
+                
+                // Show success message
+                const form = event.target;
+                const successMessage = document.createElement('div');
+                successMessage.className = 'mt-4 p-4 bg-green-100 text-green-700 rounded-lg text-center';
+                successMessage.innerHTML = '🎉 Thank you! We\'ll contact you within 24 hours with a custom quote.';
+                form.appendChild(successMessage);
+                
+                // Reset form after delay
+                setTimeout(() => {
+                    form.reset();
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.classList.remove('bg-green-500');
+                    successMessage.remove();
+                }, 3000);
+            }, 1500);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+
+        // Enhanced scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Handle section transitions
+                    if (entry.target.classList.contains('section-transition')) {
+                        entry.target.classList.add('animate');
+                    }
+                    
+                    // Handle stagger animations
+                    if (entry.target.classList.contains('stagger-animation')) {
+                        entry.target.classList.add('animate');
+                    }
+                    
+                    // Handle counters
+                    if (entry.target.classList.contains('counter')) {
+                        animateCounter(entry.target);
+                    }
+                    
+                    // Handle old fade-in elements
+                    if (entry.target.classList.contains('fade-in') || 
+                        entry.target.classList.contains('fade-in-delayed') || 
+                        entry.target.classList.contains('fade-in-delayed-2')) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .fade-in-delayed, .fade-in-delayed-2, .section-transition, .stagger-animation, .counter').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Typewriter effect completion handler
+        setTimeout(() => {
+            const typewriterElement = document.querySelector('.typewriter');
+            if (typewriterElement) {
+                typewriterElement.style.borderRight = 'none';
+            }
+        }, 5000);
+
+        // Parallax effect for floating bottles
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const bottles = document.querySelectorAll('.float, .float-delayed, .float-delayed-2');
+            
+            bottles.forEach((bottle, index) => {
+                const speed = 0.5 + (index * 0.1);
+                bottle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97eaf9e4534d91be',t:'MTc1NzgwMTQ0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
